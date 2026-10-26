@@ -14,9 +14,11 @@
 
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" name="nombre">
+        <br>
 
         <label for="dni">DNI</label>
         <input type="text" id="dni" name="dni">
+        <br>
 
         <label for="sexo">Sexo</label>
         <select id="sexo" name="sexo">
@@ -24,9 +26,11 @@
             <option value="M">M</option>
             <option value="F">F</option>
         </select>
+        <br>
 
         <label for="categoria">Categoría</label>
         <input type="number" id="categoria" name="categoria" min="1" max="10">
+        <br>
 
         <label for="anyos">Años trabajados</label>
         <input type="number" id="anyos" name="anyos" min="0">
