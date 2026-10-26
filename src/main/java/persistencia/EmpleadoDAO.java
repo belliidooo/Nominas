@@ -24,7 +24,7 @@ public class EmpleadoDAO {
 
     public static void actualizar(Empleado emp, String dniOriginal) throws SQLException {
 
-        String sql = "UPDATE Empleado SET nombre = ?, dni = ?, sexo = ?, categoria = ?, anyos = ? " +
+        String sql = "UPDATE empleados SET nombre = ?, dni = ?, sexo = ?, categoria = ?, anyos = ? " +
                 "WHERE dni = ?";
 
         try (Connection conexion = ConexionDB.conexion();
@@ -67,7 +67,7 @@ public class EmpleadoDAO {
 
     public static Empleado buscarPorDni(String dni) throws SQLException, DatosNoCorrectosException{
 
-        String sql = "SELECT dni, nombre, sexo, categoria, anyos FROM Empleado " +
+        String sql = "SELECT dni, nombre, sexo, categoria, anyos FROM empleados " +
                 "WHERE dni = ?";
 
         try (Connection conexion = ConexionDB.conexion();
@@ -98,7 +98,7 @@ public class EmpleadoDAO {
     public static ArrayList<Empleado> obtenerTodos() throws SQLException, DatosNoCorrectosException {
         ArrayList<Empleado> empleados = new ArrayList<>();
 
-        String sql = "SELECT dni, nombre, sexo, categoria, anyos FROM Empleado";
+        String sql = "SELECT dni, nombre, sexo, categoria, anyos FROM empleados";
 
         try (Connection conexion = ConexionDB.conexion();
         PreparedStatement ps = conexion.prepareStatement(sql);
@@ -117,6 +117,60 @@ public class EmpleadoDAO {
             }
         }
         return empleados;
+    }
+
+    /**
+     * Busca empleados combinando (AND) los criterios que no estén vacíos.
+     * Nombre y DNI se buscan por coincidencia parcial.
+     *
+     * @return empleados que cumplen los criterios, ordenados por nombre
+     */
+    public static ArrayList<Empleado> buscar(String nombre, String dni, String sexo, Integer categoria, Integer anyos) throws SQLException, DatosNoCorrectosException {
+
+        StringBuilder sql = new StringBuilder("SELECT dni, nombre, sexo, categoria, anyos FROM empleados WHERE 1=1");
+        ArrayList<Object> params = new ArrayList<>();
+
+        if (nombre != null && !nombre.isBlank()) {
+            sql.append(" AND nombre LIKE ?");
+            params.add("%" + nombre.trim() + "%");
+        }
+        if (dni != null && !dni.isBlank()) {
+            sql.append(" AND dni LIKE ?");
+            params.add("%" + dni.trim() + "%");
+        }
+        if (sexo != null && !sexo.isBlank()) {
+            sql.append(" AND sexo = ?");
+            params.add(sexo);
+        }
+        if (categoria != null) {
+            sql.append(" AND categoria = ?");
+            params.add(categoria);
+        }
+        if (anyos != null) {
+            sql.append(" AND anyos = ?");
+            params.add(anyos);
+        }
+        sql.append(" ORDER BY nombre");
+
+        ArrayList<Empleado> lista = new ArrayList<>();
+        try (Connection conexion = ConexionDB.conexion();
+             PreparedStatement ps = conexion.prepareStatement(sql.toString())) {
+
+            for (int i = 0; i < params.size(); i++) {
+                ps.setObject(i + 1, params.get(i));
+            }
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new Empleado(
+                            rs.getString("nombre"),
+                            rs.getString("dni"),
+                            rs.getString("sexo").charAt(0),
+                            rs.getInt("categoria"),
+                            rs.getInt("anyos")));
+                }
+            }
+        }
+        return lista;
     }
 
 }

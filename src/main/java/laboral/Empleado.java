@@ -7,7 +7,7 @@ public class Empleado extends Persona{
      * tambien las de personas con el extends)
      * */
     private int categoria;
-    public static int anyos;
+    public int anyos;
 
     /**
      * Constructor con los parametros de persona
@@ -75,4 +75,7 @@ public class Empleado extends Persona{
         System.out.println("Categoría: " + categoria);
         System.out.println("Años trabajados: " + anyos);
     }
+
+    /** @return años trabajados */
+    public int getAnyos() { return anyos; }
 }

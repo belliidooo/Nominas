@@ -37,6 +37,17 @@ public class NominaDAO {
         }
     }
 
+    public static Integer obtenerSalario(String dni) throws SQLException {
+        String sql = "SELECT sueldo FROM nominas WHERE dni = ?";
+
+        try (Connection conn = ConexionDB.conexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, dni);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getInt("sueldo") : null;
+            }
+        }
+    }
 
 }
 

@@ -10,4 +10,12 @@ public class ConexionDB {
     public static Connection conexion () throws SQLException {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
+
+    static {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
 }

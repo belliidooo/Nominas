@@ -14,9 +14,9 @@ public class Persona {
      * @param sexo Sexo de la persona
      * */
 
-    public static String nombre;
-    public static String dni;
-    public static char sexo;
+    public String nombre;
+    public String dni;
+    public char sexo;
 
     /**
      * Constructor con todas las propiedades de la persona.
@@ -65,4 +65,13 @@ public class Persona {
         System.out.println("Nombre: " + nombre);
         System.out.println("DNI: " + dni);
     }
+
+    /** @return nombre de la persona */
+    public String getNombre() { return nombre; }
+
+    /** @return DNI de la persona */
+    public String getDni() { return dni; }
+
+    /** @return sexo de la persona */
+    public char getSexo() { return sexo; }
 }
