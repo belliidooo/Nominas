@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Salario del empleado</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
 <div class="contenedor">

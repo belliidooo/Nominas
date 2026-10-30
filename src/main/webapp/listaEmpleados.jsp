@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de empleados</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
 <div class="contenedor">

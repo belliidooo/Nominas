@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    color: #222;
+    margin: 0;
+    padding: 20px;
+}
+
+.contenedor {
+    max-width: 700px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+/* Menú */
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+/* Botones y enlaces */
+.boton, button {
+    display: inline-block;
+    background: #3b82f6;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.boton:hover, button:hover {
+    background: #2563eb;
+}
+
+.volver {
+    background: #6b7280;
+}
+
+.volver:hover {
+    background: #4b5563;
+}
+
+/* Formularios */
+label {
+    display: inline-block;
+    width: 140px;
+    margin: 6px 0;
+}
+
+input, select {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: #3b82f6;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background: #f5f7fa;
+}
+
+/* Mensajes */
+.error {
+    color: #b91c1c;
+    background: #fee2e2;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.info {
+    color: #1e40af;
+    background: #dbeafe;
+    padding: 10px;
+    border-radius: 5px;
+}
